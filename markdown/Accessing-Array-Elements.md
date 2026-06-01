@@ -1,54 +1,54 @@
-Next: [Declaring an Array](Declaring-an-Array.md), Up:
-[Arrays](Arrays.md)  
-[Contents](index.md#SEC_Contents "Table of contents")  
+Növbəti: [Massivin Elanı](Declaring-an-Array.md), Yuxarı:
+[Massivlər](Arrays.md)  
+[Mündəricat](index.md#SEC_Contents "Mündəricat")
 
 ------------------------------------------------------------------------
 
+### 16.1 Massiv Elementlərinə Giriş
 
-### 16.1 Accessing Array Elements 
+Əgər `a` dəyişəni bir massivdirsə, `a` massivinin `n`-ci elementi
+`a[n]` şəklində göstərilir. Bu ifadədən həm elementin dəyərini oxumaq,
+həm də ona dəyər təyin etmək üçün istifadə edə bilərsiniz:
 
-
-If the variable `a` is an array, the `n`th element of `a` is
-`a[n]`. You can use that expression to access an element's value or to
-assign to it:
-
-``` C
+```C
 x = a[5];
 a[6] = 1;
 ```
 
-Since the variable `a` is an lvalue, `a[n]` is also an lvalue.
+`a` dəyişəni bir lvalue olduğu üçün `a[n]` də lvalue hesab olunur.
 
-The lowest valid index in an array is 0, *not* 1, and the highest valid
-index is one less than the number of elements.
+Massivdə ən kiçik etibarlı indeks 0-dır, *1 deyil*, və ən böyük etibarlı
+indeks elementlərin sayından bir vahid azdır.
 
-The C language does not check whether array indices are in bounds, so if
-the code uses an out-of-range index, it will access memory outside the
-array.
+C dili massiv indekslərinin sərhədlər daxilində olub-olmadığını yoxlamır.
+Buna görə də kod diapazondan kənar indeks istifadə edərsə, massivdən
+kənardakı yaddaşa müraciət edəcəkdir.
 
-**Warning:** Using only valid index values in C is the programmer's
-responsibility.
+**Xəbərdarlıq:** C dilində yalnız etibarlı indeks dəyərlərindən istifadə
+etmək proqramçının məsuliyyətidir.
 
-Array indexing in C is not a primitive operation: it is defined in terms
-of pointer arithmetic and dereferencing. Now that we know *what* `a[i]`
-does, we can ask *how* `a[i]` does its job.
+C dilində massiv indekslənməsi ilkin (primitive) əməliyyat deyil; o,
+göstərici (pointer) arifmetikası və dereferens etmə əsasında təyin olunur.
+İndi artıq `a[i]` ifadəsinin *nə etdiyini* bildiyimiz üçün, onun bunu
+*nə cür etdiyini* soruşa bilərik.
 
-In C, `x[y]` is an abbreviation for `*(x+y)`. Thus, `a[i]` really means
-`*(a+i)`. See [Pointers and Arrays](Pointers-and-Arrays.md).
+C dilində `x[y]` ifadəsi `*(x+y)` üçün qısaldılmış yazılışdır. Buna görə
+də `a[i]` əslində `*(a+i)` deməkdir. Bax:
+[Göstəricilər və Massivlər](Pointers-and-Arrays.md).
 
-When an expression with array type (such as `a`) appears as part of a
-larger C expression, it is converted automatically to a pointer to
-element zero of that array. For instance, `a` in an expression is
-equivalent to `&a[0]`. Thus, `*(a+i)` is computed as `*(&a[0]+i)`.
+Massiv tipli bir ifadə (məsələn, `a`) daha böyük bir C ifadəsinin tərkibində
+işləndikdə, avtomatik olaraq həmin massivin sıfırıncı elementinə göstəriciyə
+(pointer) çevrilir. Məsələn, ifadə daxilindəki `a`, `&a[0]` ilə ekvivalentdir.
+Beləliklə, `*(a+i)` ifadəsi əslində `*(&a[0]+i)` kimi hesablanır.
 
-Now we can analyze how that expression gives us the desired element of
-the array. It makes a pointer to element 0 of `a`, advances it by the
-value of `i`, and dereferences that pointer.
+İndi bu ifadənin necə istənilən massiv elementini verdiyini təhlil edə bilərik.
+Əvvəlcə `a` massivinin 0-cı elementinə göstərici yaradır, sonra onu `i`
+qədər irəli aparır və sonda həmin göstəricini dereferens edir.
 
-Another equivalent way to write the expression is `(&a[0])[i]`.
+Bu ifadəni yazmağın başqa bir ekvivalent üsulu da `(&a[0])[i]` şəklidir.
 
 ------------------------------------------------------------------------
 
-Next: [Declaring an Array](Declaring-an-Array.md), Up:
-[Arrays](Arrays.md)  
-[Contents](index.md#SEC_Contents "Table of contents")  
+Növbəti: [Massivin Elanı](Declaring-an-Array.md), Yuxarı:
+[Massivlər](Arrays.md)  
+[Mündəricat](index.md#SEC_Contents "Mündəricat")
